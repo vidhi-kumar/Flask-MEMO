@@ -18,8 +18,9 @@
     />
     <title>
         {% block title %}Home{% endblock %} 
-        <!-- block can be replaced by child template -->
+        
     </title>
+    <!-- block can be replaced by child template -->
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -37,7 +38,10 @@
           </div>
         </div>   
     </nav>
-
+    <div class="container">
+      <!-- container gives padding from navbar and edge of screen -->
+      {% block content %}{% endblock %}
+    </div>
     <!-- loaded javascript related to bootstrap -->
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
