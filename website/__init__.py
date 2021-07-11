@@ -1,6 +1,7 @@
 # __init__ will make the website directory a python package
 
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
 def create_app():
     app = Flask(__name__)

@@ -38,6 +38,31 @@
           </div>
         </div>   
     </nav>
+    <!-- time to code the flash messages -->
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+    <!-- now we loop through the messages -->
+        {% for category, message in messages %}
+        {% if category == 'error' %}
+          <div class="alert alert-danger alert-dismissable fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% else %}
+          <div class="alert alert-success alert-dismissable fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
     <div class="container">
       <!-- container gives padding from navbar and edge of screen -->
       {% block content %}{% endblock %}
