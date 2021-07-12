@@ -28,6 +28,7 @@ def login():
                 #login procedure
                 login_user(user, remember=True) # literally remembers user is loggedin
                                 #until user deletes cookies or restart flask web server
+                return redirect(url_for('views.home')) # go to home after login
                 
             else:
                 flash('Incorrect password, try again', category='error')
