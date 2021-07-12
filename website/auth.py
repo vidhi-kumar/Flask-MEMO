@@ -32,6 +32,8 @@ def sign_up():
             flash('Email must be greater than 4 letters', category='error')
         elif len(firstName) < 1:
             flash('First name cannot be empty', category='error')
+        elif len(lastName) < 1:
+            flash('Last name cannot be empty', category='error')
         elif password1 != password2:
             flash('Passwords don\'t match', category='error') # escape char used
         elif len(password1) < 5:
