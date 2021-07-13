@@ -9,8 +9,14 @@
 <!-- ul is list of items -->
 <ul class="list-group list-group-flush" id="notes">
     {% for note in user.notes %}
-    <li class="list-group-item">{{ note.data }}</li>
-    {% endfor %}
+    <li class="list-group-item">
+        {{ note.data }}
+        <!-- onClick is js -->
+        <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </li>
+      {% endfor %}
 </ul>
 
 <!-- creating form for entering notes -->

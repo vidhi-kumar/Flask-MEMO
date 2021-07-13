@@ -1,11 +1,12 @@
 # here we have the pages of our website
 from flask import Blueprint #Represents a blueprint, a collection of routes 
         # and other app-related functions that can be registered on a real application later.
-from flask import render_template, request, flash
+from flask import render_template, request, flash, jsonify
 from flask_login import login_required, current_user
 from . import db
 from .models import Note
 views = Blueprint('views', __name__)
+import json
 
 @views.route('/', methods=['GET', 'POST']) # below runs the function for this route
 @login_required #cant go home without login
@@ -24,3 +25,14 @@ def home():
     return render_template("home.html", user=current_user) # this will render home.html
                                        # ^we can refer current user in our template                     
 # we need to register these blueprints in init.py
+@views.route('/delete-note', methods=['POST'])
+def delete_note():
+    note = json.loads(request.data)
+    noteId = note['noteId']
+    note = Note.query.get(noteId)
+    if note:
+        if note.user_id == current_user.id:
+            db.session.delete(note)
+            db.session.commit()
+
+    return jsonify({})
