@@ -76,7 +76,7 @@ def sign_up():
             #sha56 is a hashing algo
             db.session.add(new_user)
             db.session.commit()
-            login_user(user, remember=True) #direct login after signup
+            login_user(new_user, remember=True) #direct login after signup
             flash('Account Created', category='success')
             return redirect(url_for('views.home'))
 
